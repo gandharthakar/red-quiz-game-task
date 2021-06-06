@@ -1,0 +1,1262 @@
+@import 'partials/_common.scss';
+@import 'partials/_css-flexbox.scss';
+@import 'partials/colors/_common-colors.scss';
+
+* {
+	padding: 0px;
+	margin: 0px;
+	@include box-sizing(border-box);
+	@include outline(none);
+}
+
+body {
+	font-weight: 400;
+	font-family: $font-family-project-main, $font-family--default-opt;
+	@include font-smoothing(on);
+}
+
+.rmv-appr {
+	@include remove-select-box-arrow();
+}
+
+.rmv-appr::-ms-expand {
+	display: none;
+}
+
+.clearfix::after {
+	display: block;
+	clear: both;
+	content: "";
+}
+
+/* ---- ---- Common Site CSS ---- ---- */
+
+.site-container {
+	max-width: 1024px;
+	margin: 0px auto;
+}
+
+.site-red-button {
+	display: inline-block;
+	text-decoration: none !important;
+	border: 1px solid $site_red;
+	background-color: $site_red;
+	color: $white;
+	padding: 15px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	@include transition(all ease-in-out 0.2s);
+	&:hover {
+		background-color: $site_red_hover;
+		color: $white;
+		border-color: $site_red_hover;
+	}
+	&.btn-block-full-width {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	&.default-round-corners {
+		@include border-radius(6px);
+	}
+}
+
+.site-white-button {
+	display: inline-block;
+	text-decoration: none !important;
+	border: 1px solid $white;
+	background-color: $white;
+	color: $site_cta_color_1;
+	padding: 15px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	@include transition(all ease-in-out 0.2s);
+	&:hover {
+		background-color: $site_red;
+		color: $white;
+		border-color: $site_red;
+	}
+	&.btn-block-full-width {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	&.default-round-corners {
+		@include border-radius(6px);
+	}
+}
+
+.site-red-transparent-bg-button {
+	display: inline-block;
+	text-decoration: none !important;
+	border: 1px solid $white;
+	background-color: transparent;
+	color: $white;
+	padding: 15px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	@include transition(all ease-in-out 0.2s);
+	&:hover {
+		background-color: $site_red;
+		color: $white;
+		border-color: $site_red;
+	}
+	&.btn-block-full-width {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	&.default-round-corners {
+		@include border-radius(6px);
+	}
+}
+
+.common-section-bg {
+	background-image: url($site-home-banner-image-destop);
+	background-color: $site_section_bg_1;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.common-game--container-1 {
+	max-width: 400px;
+	margin: 0px auto;
+}
+
+.common-game--container-2 {
+	max-width: 630px;
+	margin: 0px auto;
+}
+
+/* ---- ---- Home Banner ---- ---- */
+
+.home--banner {
+	background-image: url($site-home-banner-image-destop);
+	background-color: $site_section_bg_1;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	padding: 100px 20px;
+	min-height: 100vh;
+}
+
+.banner--inner {
+	position: relative;
+}
+
+.banner--big-text-cnt {
+	text-align: right;
+	& .text-content {
+		padding: 0px;
+		margin: 0px;
+		color: $white;
+		text-transform: uppercase;
+		font-weight: 900;
+		line-height: 40px;
+	}
+	& .text1 {
+		font-size: 32px;
+	}
+	& .text2 {
+		font-size: 54px;
+		line-height: 60px;
+	}
+	& .text3 {
+		font-size: 32px;
+		line-height: 40px;
+	}
+}
+
+.banner--athlete-image {
+	position: absolute;
+	left: 0px;
+	top: -60px;
+	width: calc(100% - 300px);
+}
+
+.banner--steps-container {
+	padding: 10px 0px;
+	text-align: right;
+	& .step {
+		padding: 10px 0px;
+	}
+	& .step-image-icon {
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	& .step-name {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 18px;
+		color: $white;
+		padding-left: 15px;
+	}
+	& .step-message-mobile {
+		display: none;
+		font-size: 24px;
+		color: $white;
+	}
+}
+
+.banner--cta-cnt {
+	text-align: right;
+}
+
+/* ---- ---- Athlete section ---- ---- */
+
+.athlete--list {
+	background-color: $site_section_bg_1;
+	padding: 40px 5px 30px;
+	& .athlete-list--title {
+		padding-bottom: 20px;
+		text-align: center;
+		& h1 {
+			font-size: 25px;
+			color: $white;
+		}
+	}
+	& .athlete-list-row {
+		@include flexbox();
+		@include flex-wrap(wrap);
+	}
+	& .athlete-list--player-card {
+		@include flexbox();
+		@include flex(0, 0, 33.33333%);
+		max-height: 450px;
+		overflow: hidden;
+		padding: 15px;
+		position: relative;
+	}
+	& .player-link {
+		overflow: hidden;
+		@include border-radius(8px);
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 15px;
+			left: 15px;
+			z-index: 1;
+			opacity: 0.50;
+			width: calc(100% - 30px);
+			height: 50%;
+			background: linear-gradient(0deg, rgba(48, 48, 48, 0.9) 33.58%, rgba(7, 36, 102, 0) 100%);
+		}
+	}
+	& .player-image {
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+		object-fit: cover;
+		@include transition(transform 0.5s ease-in-out);
+		@include transform(scale(1));
+	}
+	& .player-name {
+		position: absolute;
+		width: 100%;
+		left: 0pc;
+		bottom: 30px;
+		padding: 0px 15px;
+		font-size: 20px;
+		color: $white;
+		text-align: center;
+		z-index: 2;
+	}
+	& .athlete-list--player-card {
+		&:hover {
+			& .player-image {
+				@include transform(scale(1.05));
+			}
+		}
+	}
+}
+
+/* ---- ---- Win Prizes Banner section ---- ---- */
+
+.prize-win--banner {
+	padding: 30px 20px 40px;
+	background-color: $site_section_bg_2;
+	& .cup-image-cnt {
+		text-align: center;
+	}
+	& .cup-image {
+		display: inline-block;
+	}
+	& .banner--center-text-cnt {
+		text-align: center;
+		& .text-1 {
+			display: inline-block;
+			color: $white;
+			font-size: 35px;
+			max-width: 850px;
+			margin: 0px auto;
+		}
+	}
+	& .star-text-cnt {
+		text-align: center;
+		padding: 30px 0px;
+	}
+	& .star-text {
+		display: inline-block;
+	}
+	& .star-icon {
+		display: inline-block;
+		vertical-align: middle;
+		width: 30px;
+		height: 30px;
+	}
+	& .star-str-msg {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 20px;
+		color: $white;
+		padding: 0px 25px;
+		position: relative;
+		top: 1px;
+	}
+	& .price-image-cnt {
+		text-align: center;
+		padding-bottom: 10px;
+	}
+	& .price-image {
+		display: inline-block;
+		width: 280px;
+	}
+}
+
+/* ---- ---- Single Athlete section ---- ---- */
+
+.single-athlete--section {
+	padding: 20px 20px 100px 20px;
+	min-height: 100vh;
+	& .start-game--athlete-picture {
+		display: block;
+		max-width: 100%;
+	}
+	& .start-game--athlete-name {
+		display: block;
+		text-align: center;
+		color: $white;
+		font-size: 24px;
+		font-weight: 900;
+		padding-top: 10px;
+	}
+
+	& .game-start--ctacnt1 {
+		padding: 30px 20px 0px 20px;
+	}
+
+	& .game-start--cta-item {
+		padding-bottom: 20px;
+	}
+}
+
+/* ---- ---- Game Instruction section ---- ---- */
+
+.game-instruction--section {
+	padding: 100px 0px;
+	min-height: 100vh;
+	& .game-instruction--container {
+		background-color: $site_game_instruction_box_bgc;
+		padding: 20px;
+		@include border-radius(20px);
+		margin: 0px 20px;
+	}
+	& .gitl-cnt {
+		padding-top: 15px;
+		padding-bottom: 10px;
+	}
+	& .game-instruction--title {
+		display: block;
+		font-size: 18px;
+		font-weight: 600;
+		color: $white;
+	}
+	& .game-instruction--list {
+		padding: 0px 16px;
+		margin: 0px;
+		list-style-type: disc;
+		color: $white;
+		& li {
+			padding-bottom: 10px;
+			font-size: 14px;
+		}
+	}
+	& .gi-ctacnt-1 {
+		padding-top: 30px;
+	}
+}
+
+.athlete-game-round--section {
+	padding: 100px 20px;
+	min-height: 100vh;
+	& .agrs-imgcnt {
+		padding-bottom: 10px;
+	}
+	& .agrs--athlete-picture {
+		max-width: 100%;
+		display: block;
+	}
+	& .agrs-ttlcnt {
+		padding-bottom: 30px;
+		text-align: center;
+	}
+	& .agrs-ttl {
+		display: inline-block;
+		font-size: 24px;
+		font-weight: 600;
+		color: $white;
+	}
+	& .agrs-gc-cnt {
+		text-align: center;
+	}
+	& .agrs-round-counter {
+		display: inline-block;
+		position: relative;
+		background-color: $site_game_instruction_box_bgc;
+		width: 85px;
+		height: 85px;
+		@include border-radius(50px);
+		&.ripple-round-animation {
+			background-color: transparent;
+			&::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 5px;
+				height: 5px;
+				z-index: 1;
+				@include transform( translateX(-50%) translateY(-50%) );
+				@include border-radius(50px);
+				@include animation-name(RoundRippleEffect);
+				@include animation-duration(1s);
+				@include animation-iteration-count(infinite);
+				@include animation-timing-function(linear);
+			}
+		}
+		& .count {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			font-size: 28px;
+			font-weight: 600;
+			color: $site_yellow;
+			z-index: 3;
+			@include transform( translateX(-50%) translateY(-50%) );
+		}
+	}
+}
+
+@keyframes RoundRippleEffect {
+	0% {
+		box-shadow: 0px 0px 0px 0em $site_game_instruction_box_bgc;
+	}
+	100% {
+		box-shadow: 0px 0px 0px 4em $site_game_instruction_box_bgc;
+		opacity: 0.5;
+	}
+}
+
+@-webkit-keyframes RoundRippleEffect {
+	0% {
+		-webkit-box-shadow: 0px 0px 0px 0em $site_game_instruction_box_bgc;
+	}
+	100% {
+		-webkit-box-shadow: 0px 0px 0px 4em $site_game_instruction_box_bgc;
+		opacity: 0.5;
+	}
+}
+
+@-moz-keyframes RoundRippleEffect {
+	0% {
+		-moz-box-shadow: 0px 0px 0px 0em $site_game_instruction_box_bgc;
+	}
+	100% {
+		-moz-box-shadow: 0px 0px 0px 4em $site_game_instruction_box_bgc;
+		opacity: 0.5;
+	}
+}
+
+@-o-keyframes RoundRippleEffect {
+	0% {
+		-o-box-shadow: 0px 0px 0px 0em $site_game_instruction_box_bgc;
+	}
+	100% {
+		-o-box-shadow: 0px 0px 0px 4em $site_game_instruction_box_bgc;
+		opacity: 0.5;
+	}
+}
+
+/* ---- ---- Game Score Playground section ---- ---- */
+
+.game-playground--section {
+	padding: 100px 20px;
+	min-height: 100vh;
+	& .quiz-header--section {
+		background-image: url($site-quiz-game-header);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: $site_section_bg_1;
+		@include flexbox();
+		padding: 20px;
+	}
+	& .quiz-header-item {
+		@include flexbox();
+		@include flex-basis(50%);
+		@include flex-direction(column);
+	}
+	& .qh-round-info {
+		display: block;
+		font-size: 18px;
+		font-weight: 600;
+		color: $white;
+		margin-bottom: 5px;
+	}
+	& .qh-question-info {
+		display: block;
+		font-size: 18px;
+		font-weight: 600;
+		color: $white;
+	}
+	& .quiz-timer {
+		text-align: right;
+	}
+	& .qh-qt-inner {
+		display: inline-block;
+		padding-top: 11px;
+		& .svg-icon {
+			display: inline-block;
+			vertical-align: middle;
+			width: 25px;
+			height: 25px;
+			& .fill {
+				fill: $white;
+			}
+		}
+		& .str {
+			display: inline-block;
+			vertical-align: middle;
+			font-size: 22px;
+			font-weight: 600;
+			color: $white;
+			position: relative;
+			top: 1px;
+			padding-left: 10px;
+		}
+	}
+	& .quiz-progress--container {
+		background-color: $white;
+		width: 100%;
+	}
+	& .quiz--progress {
+		width: 0px;
+		height: 5px;
+		background-color: $site_quiz_progress_color;
+	}
+	& .quiz-game-playground {
+		background-color: $site_quiz_game_playground_bg;
+		padding: 50px 15px;
+	}
+	& .quiz-game-playground-inner {
+		max-width: 300px;
+		margin: 0px auto;
+	}
+	& .quiz-question {
+		display: block;
+		font-size: 22px;
+		font-weight: 600;
+		color: $white;
+	}
+	& .quiz-answer-option--list {
+		padding-top: 30px;
+		list-style: none;
+		@include flexbox();
+		@include flex-direction(column);
+		& li {
+			padding-bottom: 15px;
+			& .answer-option {
+				display: block;
+				text-decoration: none !important;
+				width: 100%;
+				padding: 14px 15px;
+				border: 0px;
+				background-color: $white;
+				color: $site_red;
+				font-size: 18px;
+				font-weight: 600;
+				cursor: pointer;
+				position: relative;
+				@include border-radius(5px);
+				@include transition(all ease-in-out 0.2s);
+				&:hover, &:active {
+					background-color: $site_red;
+					color: $white;
+				}
+				& .svg-icon {
+					position: absolute;
+					top: 50%;
+					right: 15px;
+					width: 15px;
+					height: 15px;
+					@include transform( translateY(-50%) );
+					&.correct-icon {
+						display: none;
+						& .fill {
+							fill: $site_quiz_game_correct_answer_tick_color;
+						}
+					}
+					&.wrong-icon {
+						display: none;
+						width: 12px;
+						height: 12px;
+						& .fill {
+							fill: $white;
+						}
+					}
+				}
+				&.condition-check {
+					padding: 14px 30px 14px 15px;
+				}
+				&.correct {
+					background-color: $site_quiz_game_correct_answer_bg_color;
+					color: $white;
+					&:hover, &:active {
+						background-color: $site_quiz_game_correct_answer_bg_color;
+						color: $white;
+					}
+					& .svg-icon {
+						&.correct-icon {
+							display: initial;
+						}
+					}
+				}
+				&.wrong {
+					background-color: $site_quiz_game_wrong_answer_bg_color;
+					color: $white;
+					&:hover, &:active {
+						background-color: $site_quiz_game_wrong_answer_bg_color;
+						color: $white;
+					}
+					& .svg-icon {
+						&.wrong-icon {
+							display: initial;
+						}
+					}
+				}
+				&.correct-shake {
+					@include animation-name(shakeY);
+					@include animation-duration(0.2s);
+					@include animation-iteration-count(infinite);
+					@include animation-timing-function(linear);
+				}
+				&.wrong-shake {
+					@include animation-name(shakeX);
+					@include animation-duration(0.2s);
+					@include animation-iteration-count(infinite);
+					@include animation-timing-function(linear);
+				}
+			}
+		}
+	}
+}
+
+@keyframes shakeX {
+	0% {
+		transform: translateX(0px);
+	}
+	25% {
+		transform: translateX(5px);
+	}
+	50% {
+		transform: translateX(0px);
+	}
+	75% {
+		transform: translateX(-5px);
+	}
+	100% {
+		transform: translateX(0px);
+	}
+}
+
+@-webkit-keyframes shakeX {
+	0% {
+		-webkit-transform: translateX(0px);
+	}
+	25% {
+		-webkit-transform: translateX(5px);
+	}
+	50% {
+		-webkit-transform: translateX(0px);
+	}
+	75% {
+		-webkit-transform: translateX(-5px);
+	}
+	100% {
+		-webkit-transform: translateX(0px);
+	}
+}
+
+@-moz-keyframes shakeX {
+	0% {
+		-moz-transform: translateX(0px);
+	}
+	25% {
+		-moz-transform: translateX(5px);
+	}
+	50% {
+		-moz-transform: translateX(0px);
+	}
+	75% {
+		-moz-transform: translateX(-5px);
+	}
+	100% {
+		-moz-transform: translateX(0px);
+	}
+}
+
+@-o-keyframes shakeX {
+	0% {
+		-o-transform: translateX(0px);
+	}
+	25% {
+		-o-transform: translateX(5px);
+	}
+	50% {
+		-o-transform: translateX(0px);
+	}
+	75% {
+		-o-transform: translateX(-5px);
+	}
+	100% {
+		-o-transform: translateX(0px);
+	}
+}
+
+@keyframes shakeY {
+	0% {
+		transform: translateY(0px);
+	}
+	25% {
+		transform: translateY(3px);
+	}
+	50% {
+		transform: translateY(0px);
+	}
+	75% {
+		transform: translateY(-3px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+@-webkit-keyframes shakeY {
+	0% {
+		-webkit-transform: translateY(0px);
+	}
+	25% {
+		-webkit-transform: translateY(3px);
+	}
+	50% {
+		-webkit-transform: translateY(0px);
+	}
+	75% {
+		-webkit-transform: translateY(-3px);
+	}
+	100% {
+		-webkit-transform: translateY(0px);
+	}
+}
+
+@-moz-keyframes shakeY {
+	0% {
+		-moz-transform: translateY(0px);
+	}
+	25% {
+		-moz-transform: translateY(3px);
+	}
+	50% {
+		-moz-transform: translateY(0px);
+	}
+	75% {
+		-moz-transform: translateY(-3px);
+	}
+	100% {
+		-moz-transform: translateY(0px);
+	}
+}
+
+@-o-keyframes shakeY {
+	0% {
+		-o-transform: translateY(0px);
+	}
+	25% {
+		-o-transform: translateY(3px);
+	}
+	50% {
+		-o-transform: translateY(0px);
+	}
+	75% {
+		-o-transform: translateY(-3px);
+	}
+	100% {
+		-o-transform: translateY(0px);
+	}
+}
+
+/* ---- ---- Game Score Leaderboard section ---- ---- */
+
+.game-score-leaderboard--section {
+	padding: 100px 20px;
+	min-height: 100vh;
+	& .scoreboard {
+		background: radial-gradient(98.89% 98.89% at 50% 113.33%, #6A95E0 0%, #002658 100%);
+	}
+	& .scoredata--container {
+		padding: 40px 20px 20px 20px;
+		text-align: center;
+	}
+	& .user-score {
+		font-size: 32px;
+		font-weight: 900;
+		color: $white;
+	}
+	& .user-score-result-text {
+		font-size: 14px;
+		font-weight: 600;
+		color: $white;
+		text-transform: uppercase;
+		padding-top: 5px;
+	}
+	& .user-score-result-time {
+		font-size: 14px;
+		font-weight: 600;
+		color: $site_yellow;
+		text-transform: uppercase;
+		padding-top: 5px;
+	}
+	& .submit-score-btn-cnt {
+		padding-top: 15px;
+	}
+	& .sbmsg-cnt-1 {
+		text-align: center;
+	}
+	& .sbmsg-cnt-1 {
+		padding-top: 5px;
+	}
+	& .sbmsg {
+		font-size: 14px;
+		color: $white;
+		& .link, &.link {
+			color: inherit;
+			text-decoration: none !important;
+			&:hover, &:active {
+				color: inherit;
+			}
+		}
+	}
+	& .athlete-lbnm-cnt {
+		padding: 20px 0px 25px 0px;
+		text-align: center;
+	}
+	& .athlete-lbnm {
+		display: inline-block;
+		font-size: 24px;
+		color: $white;
+	}
+	& .tab-nav--container {
+		padding-bottom: 18px;
+	}
+	& .tab-nav--list {
+		position: relative;
+		@include border-radius(25px);
+		background-color: $site_ulbtd_tabnav_list_bg;
+		list-style: none;
+		padding: 5px;
+		@include flexbox();
+		@include flex-wrap(wrap);
+		&::after {
+			content: '';
+			position: absolute;
+			width: calc(50% - 10px);
+			height: calc(100% - 10.5px);
+			left: 5px;
+			top: 5px;
+			background: $white;
+			z-index: 1;
+			@include border-radius(25px);
+			@include transition(all ease-in-out 0.3s);
+		}
+		& li {
+			@include flex-grow();
+			position: relative;
+			z-index: 2;
+			& .tab-elem {
+				text-decoration: none !important;
+				display: block;
+				width: 100%;
+				border: 0px;
+				background-color: transparent;
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 15px;
+				font-weight: 600;
+				padding: 10px;
+				cursor: pointer;
+				@include border-radius(25px);
+				@include transition(all ease-in-out 0.3s);
+			}
+			&.active {
+				& .tab-elem {
+					color: $site_ulbtd_tabnav_list_item_active_txtclr;
+				}
+			}
+		}
+		&.slide-tonext {
+			&::after {
+				left: 50%;
+			}
+			& li {
+				&.active {
+					& .tab-elem {
+						color: $site_ulbtd_tabnav_list_item_active_txtclr;
+					}
+				}
+			}
+		}
+	}
+	& .leaderboard {
+		text-align: center;
+		& .lbdata-tables {
+			& table {
+				width: 100%;
+				border: 0px;
+				padding: 0px;
+				margin: 0px;
+				border-spacing: 0px;
+				& tr {
+					&:nth-child(1) {
+						counter-reset: rowNumber;
+					}				
+				}
+				& tr {
+					counter-increment: rowNumber;
+				}				
+				& thead {
+					& tr {
+						& th {
+							background-color: $white;
+							font-size: 18px;
+							font-weight: 600;
+							padding: 10px;
+							color: $site_ulbtd_txtclr;
+							text-align: center;
+						}
+					}
+				}
+				& tbody {
+					& tr {
+						& td {
+							background-color: $site_ulbtd_tblbg_1;
+							font-size: 18px;
+							font-weight: 600;
+							padding: 10px;
+							color: $site_ulbtd_tbltxtclr_1;
+							text-align: center;
+							
+							&.usr-no, &.usr-score, &.usr-time {
+								color: $site_ulbtd_tbltxtclr_red;
+							}
+							&:first-child {
+								&::before {
+									content: counter(rowNumber);
+								}
+							}
+						}						
+					}
+				}
+			}
+		}
+		& .nodata-found {
+			font-size: 16px;
+			color: $white;
+		}
+	}
+	& .uslb-ctagrp-cont {
+		padding-top: 20px;
+		& .item-cta {
+			padding-bottom: 15px;
+		}
+	}
+}
+
+/* ---- ---- Current Leaders section ---- ---- */
+
+.current-leaders--section {
+	padding: 100px 20px;
+	min-height: 100vh;
+	& .cl-ttlcnt {
+		text-align: center;
+		padding-bottom: 30px;
+	}
+	& .cl-ttl {
+		display: inline-block;
+		font-size: 30px;
+		font-weight: 600;
+		color: $white;
+		text-transform: uppercase;
+	}
+	& .cl-group-item {
+		padding-bottom: 30px;
+	}
+	& .cl-group-athlete-name {
+		display: block;
+		text-align: center;
+		color: $white;
+		font-size: 20px;
+		font-weight: 600;
+		padding: 10px 20px;
+		text-transform: uppercase;
+		background: radial-gradient(98.89% 98.89% at 50% 113.33%, #6A95E0 0%, #002658 100%);
+	}
+	& .cl-group-rank-user--table {
+		width: 100%;
+		border: 0px;
+		padding: 0px;
+		margin: 0px;
+		border-spacing: 0px;
+		& tbody {
+			& tr {
+				& td {
+					background-color: $site_yellow;
+					color: $site_ulbtd_tbltxtclr_1;
+					text-transform: uppercase;
+					font-size: 18px;
+					font-weight: 600;
+					text-align: center;
+					padding: 10px;
+					&.score-text, &.time-text {
+						color: $site_ulbtd_tbltxtclr_red;
+					}
+				}
+			}
+		}
+	}
+	& .no-data {
+		display: block;
+		text-align: center;
+		color: $white;
+		font-size: 16px;
+		padding-top: 15px;
+	}
+}
+
+/*
+
+========================
+	RESPONSIVE @MEDIA	
+========================
+
+*/
+
+@media (max-width: 1020px) {
+	.banner--athlete-image {
+		width: calc(100% - 250px);
+	}
+}
+
+@media (max-width: 950px) {
+	.banner--athlete-image {
+		width: calc(100% - 280px);
+		top: 0px;
+	}
+}
+
+@media (max-width: 850px) {
+	.home--banner {
+		padding: 100px 20px 50px;
+	}
+	.banner--athlete-image {
+		top: 22px;
+	}
+}
+
+@media (max-width: 767px) {
+	.home--banner {
+		background-image: url($site-home-banner-image-mobile);
+		padding: 50px 20px 30px;
+	}
+
+	.banner--big-text-cnt {
+		text-align: center;
+		& .text-content {
+			line-height: 20px;
+		}
+		& .text1 {
+			font-size: 22px;
+		}
+		& .text2 {
+			font-size: 42px;
+			line-height: normal;
+		}
+		& .text3 {
+			font-size: 22px;
+			line-height: 26px;
+		}
+	}
+
+	.banner--athlete-image {
+		position: relative;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+	}
+
+	.banner--steps-container {
+		text-align: center;
+		& .step-message-mobile {
+			display: inline-block;
+		}
+		& .mobile-steps {
+			@include flexbox();
+		}
+		& .step {
+			@include flex-grow();
+		}
+		& .step-image-icon {
+			width: 40px;
+			height: 40px;
+		}
+		& .step-name {
+			display: block;
+			padding-left: 0px;
+			max-width: 105px;
+			margin: 0px auto;
+			font-size: 14px;
+		}
+	}
+
+	.banner--cta-cnt {
+		text-align: center;
+	}	
+}
+
+@media (max-width: 700px) {
+	.athlete--list {
+		.athlete-list--player-card {
+			@include flex(0, 0, 50%);
+		}
+		& .player-name {
+			font-size: 16px;
+			padding: 0px 25px;
+		}
+	}
+
+	.prize-win--banner {
+		& .cup-image {
+			display: inline-block;
+			width: 250px;
+		}
+		& .banner--center-text-cnt {
+			text-align: center;
+			& .text-1 {
+				font-size: 26px;
+			}
+		}
+		& .star-icon {
+			width: 25px;
+			height: 25px;
+		}
+		& .star-str-msg {
+			font-size: 18px;
+			padding: 0px 10px;
+			top: 4px;
+		}
+		& .price-image {
+			display: inline-block;
+			width: 200px;
+		}
+	}
+	.single-athlete--section {
+		padding: 0px 0px 50px 0px;
+	}
+	.game-instruction--section {
+		padding: 50px 0px;
+	}
+	.athlete-game-round--section {
+		padding: 0px 0px 50px 0px;
+	}
+	.game-playground--section {
+		padding: 50px 20px;
+		& .qh-round-info {
+			font-size: 16px;
+		}
+		& .qh-question-info {
+			font-size: 16px;
+		}
+		& .qh-qt-inner {
+			& .str {
+				font-size: 20px;
+			}
+		}
+		& .quiz-game-playground {
+			padding: 30px 15px;
+		}
+		& .quiz-question {
+			font-size: 20px;
+		}
+		& .quiz-answer-option--list {
+			& li {
+				& .answer-option {
+					font-size: 16px;
+				}
+			}
+		}
+	}
+	.game-score-leaderboard--section {
+		padding: 50px 20px;
+		& .leaderboard {
+			& .lbdata-tables {
+				& table {
+					& thead {
+						& tr {
+							& th {
+								font-size: 16px;
+							}
+						}
+					}
+					& tbody {
+						& tr {
+							& td {
+								font-size: 16px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.current-leaders--section {
+		padding: 50px 20px;
+		& .cl-ttl {
+			font-size: 22px;
+		}
+		& .cl-group-athlete-name {
+			font-size: 18px;
+		}
+		& .cl-group-rank-user--table {
+			& tbody {
+				& tr {
+					& td {
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+}
