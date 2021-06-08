@@ -393,7 +393,7 @@ body {
 }
 
 .athlete-game-round--section {
-	padding: 100px 20px;
+	padding: 20px 20px 100px 20px;
 	min-height: 100vh;
 	& .agrs-imgcnt {
 		padding-bottom: 10px;
@@ -438,6 +438,12 @@ body {
 				@include animation-duration(1s);
 				@include animation-iteration-count(infinite);
 				@include animation-timing-function(linear);
+				@include animation-play-state(paused);
+			}
+			&.play-anim {
+				&::after {
+					@include animation-play-state(running);
+				}
 			}
 		}
 		& .count {

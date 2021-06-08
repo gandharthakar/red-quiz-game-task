@@ -379,7 +379,7 @@ body {
     padding-top: 30px; }
 
 .athlete-game-round--section {
-  padding: 100px 20px;
+  padding: 20px 20px 100px 20px;
   min-height: 100vh; }
   .athlete-game-round--section .agrs-imgcnt {
     padding-bottom: 10px; }
@@ -446,7 +446,18 @@ body {
         -webkit-animation-timing-function: linear;
         -moz-animation-timing-function: linear;
         -o-animation-timing-function: linear;
-        -ms-animation-timing-function: linear; }
+        -ms-animation-timing-function: linear;
+        animation-play-state: paused;
+        -webkit-animation-play-state: paused;
+        -moz-animation-play-state: paused;
+        -o-animation-play-state: paused;
+        -ms-animation-play-state: paused; }
+      .athlete-game-round--section .agrs-round-counter.ripple-round-animation.play-anim::after {
+        animation-play-state: running;
+        -webkit-animation-play-state: running;
+        -moz-animation-play-state: running;
+        -o-animation-play-state: running;
+        -ms-animation-play-state: running; }
     .athlete-game-round--section .agrs-round-counter .count {
       position: absolute;
       left: 50%;

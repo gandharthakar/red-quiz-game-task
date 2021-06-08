@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function ScoreLeaderboard(props) {
+    const history = useHistory();
     let athlete_id = props.match.params.id;    
 
     let leaderboardData = {
@@ -14,6 +15,10 @@ function ScoreLeaderboard(props) {
     const [toggleLeaderboardData, setToggleLeaderboardData] = useState(leaderboardData);
     const [weeklyDataFound, setWeeklyDataFound] = useState(false);
     const [allTimeDataFound, setAllTimeDataFound] = useState(false);
+    const [athleteDetails, setAthleteDetails] = useState([]);
+    const [posScore, setPosScore] = useState('');
+    const [negScore, setNegScore] = useState('');
+    const [playTime, setPlayTime] = useState('');
 
     const toggleDataWeekly = () => {
         setToggleLeaderboardData({
@@ -29,6 +34,16 @@ function ScoreLeaderboard(props) {
         });
     }
 
+    const playAgainQuiz = () => {
+        localStorage.removeItem('score_data');
+        history.push(`/start-game/${athlete_id}`);
+    }
+
+    const chooseAthlete = () => {
+        localStorage.removeItem('score_data');
+        history.push(`/`);
+    }
+
     useEffect(() => {
         const getAPIData = async () => {
             let response = await axios.get(`https://rballaccess.achieveee.com/api/athletes/leaderboard/${athlete_id}`);
@@ -40,9 +55,26 @@ function ScoreLeaderboard(props) {
             if(Object.keys(data.alltime).length === 0) {
                 setAllTimeDataFound(true);
             }
+
+            let rs_respons = await axios.get(`https://rballaccess.achieveee.com/api/athletes/${athlete_id}`);
+            let rs_data = rs_respons.data.data.athlete;
+            setAthleteDetails(rs_data);
         }
         
         getAPIData();
+
+        let lsItem = localStorage.getItem('score_data');
+        if(lsItem) {            
+            let parseLSItem = JSON.parse(lsItem);
+            setPosScore(parseLSItem.positive_score);
+            setNegScore(parseLSItem.negative_score);
+            setPlayTime(parseLSItem.timestamp);
+        } else {
+            setPosScore('0');
+            setNegScore('-0');
+            setPlayTime('00:00:00');
+        }
+
     }, [athlete_id]);
 
     return (
@@ -50,12 +82,11 @@ function ScoreLeaderboard(props) {
             <div className="common-game--container-1">
                 <div className="scoreboard">
                     <div className="scoredata--container">
-                        <h1 className="user-score">Your Score : -4</h1>
-                        <p className="user-score-result-text">You answered 3 questions correctly and scored -4 points</p>
-                        <p className="user-score-result-time">in 00:00:28 time</p>
+                        <h1 className="user-score">Your Score : {posScore}</h1>
+                        <p className="user-score-result-text">You answered {posScore} questions correctly and {negScore} wrong. So scored {posScore} points</p>
+                        <p className="user-score-result-time">in {playTime} time</p>
                     </div>
-                    {/* <button type="button" className="site-white-button btn-block-full-width" title="Play Again" style={{textTransform: 'uppercase'}}>Play Again</button> */}
-                    <Link to={`/start-game/${athlete_id}`} className="site-white-button btn-block-full-width" title="Play Again" style={{textTransform: 'uppercase'}}>Play Again</Link>
+                    <button className="site-white-button btn-block-full-width" title="Play Again" style={{textTransform: 'uppercase'}} onClick={playAgainQuiz}>Play Again</button>
                 </div>
                 <div className="submit-score-btn-cnt">
                     <button type="button" className="site-red-button default-round-corners btn-block-full-width" title="Submit Score" style={{textTransform: 'uppercase'}}>Submit Score</button>
@@ -69,41 +100,41 @@ function ScoreLeaderboard(props) {
                     </p>
                 </div>
                 <div className="athlete-lbnm-cnt">
-                    <h2 className="athlete-lbnm">KL Rahul Leaderboard</h2>
+                    <h2 className="athlete-lbnm">{athleteDetails.name} Leaderboard</h2>
                 </div>
                 <div className="leaderboard">
                     <div className="tab-nav--container">
-                            {
-                                toggleLeaderboardData.activeWeeklyTab ? (
-                                    <ul className="tab-nav--list">
-                                        <li className="active">
-                                            <button type="button" className="tab-elem" title="Weekly" onClick={toggleDataWeekly}>
-                                                Weekly
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" className="tab-elem" title="All Time" onClick={toggleDataAllTime}>
-                                                All Time
-                                            </button>
-                                        </li>
-                                    </ul>
-                                )
-                                 : 
-                                (
-                                    <ul className="tab-nav--list slide-tonext">
-                                        <li>
-                                            <button type="button" className="tab-elem" title="Weekly" onClick={toggleDataWeekly}>
-                                                Weekly
-                                            </button>
-                                        </li>
-                                        <li className="active">
-                                            <button type="button" className="tab-elem" title="All Time" onClick={toggleDataAllTime}>
-                                                All Time
-                                            </button>
-                                        </li>
-                                    </ul>
-                                )
-                            }
+                        {
+                            toggleLeaderboardData.activeWeeklyTab ? (
+                                <ul className="tab-nav--list">
+                                    <li className="active">
+                                        <button type="button" className="tab-elem" title="Weekly" onClick={toggleDataWeekly}>
+                                            Weekly
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" className="tab-elem" title="All Time" onClick={toggleDataAllTime}>
+                                            All Time
+                                        </button>
+                                    </li>
+                                </ul>
+                            )
+                                : 
+                            (
+                                <ul className="tab-nav--list slide-tonext">
+                                    <li>
+                                        <button type="button" className="tab-elem" title="Weekly" onClick={toggleDataWeekly}>
+                                            Weekly
+                                        </button>
+                                    </li>
+                                    <li className="active">
+                                        <button type="button" className="tab-elem" title="All Time" onClick={toggleDataAllTime}>
+                                            All Time
+                                        </button>
+                                    </li>
+                                </ul>
+                            )
+                        }
                         
                     </div>
                     <div className="lbdata-tables">
@@ -179,7 +210,7 @@ function ScoreLeaderboard(props) {
                 </div>
                 <div className="uslb-ctagrp-cont">
                     <div className="item-cta">
-                        <Link to="/" className="site-red-button default-round-corners btn-block-full-width" title="Choose Athlete" style={{textTransform: 'uppercase'}}>Choose Athlete</Link>
+                        <button className="site-red-button default-round-corners btn-block-full-width" title="Choose Athlete" style={{textTransform: 'uppercase'}} onClick={chooseAthlete}>Choose Athlete</button>
                     </div>
                     <div className="item-cta">
                         <Link to="/current-leaders" className="site-red-button default-round-corners btn-block-full-width" title="Current Leaders" style={{textTransform: 'uppercase'}}>Current Leaders</Link>
