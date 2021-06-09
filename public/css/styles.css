@@ -502,7 +502,7 @@ body {
 
 /* ---- ---- Game Score Playground section ---- ---- */
 .game-playground--section {
-  padding: 100px 20px;
+  padding: 50px 20px;
   min-height: 100vh; }
   .game-playground--section .quiz-header--section {
     background-image: url("./../images/game-header-bg.png");

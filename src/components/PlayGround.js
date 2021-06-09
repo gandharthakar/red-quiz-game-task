@@ -86,7 +86,7 @@ function PlayGround(props) {
                 quesArr.push(ques[a].question);
             }
             for(let b = 0; b < answr.length; b++) {
-                ansArr.push(answr[b].options);
+                ansArr.push(answr[b].options);                
             }
             for(let c = 0; c < corAns.length; c++) {
                 corAnsArr.push(corAns[c].correct_answer);
@@ -94,6 +94,9 @@ function PlayGround(props) {
             setCurrQuestion(quesArr);
             setCurrAnswerOptions(ansArr);
             setCorrectAnswers(corAnsArr);
+
+            
+            
 
             // Round Splash Screen API Call();
             let rs_respons = await axios.get(`https://rballaccess.achieveee.com/api/athletes/${athlete_id}`);
@@ -107,17 +110,18 @@ function PlayGround(props) {
     let handleClick = (e) => {
 
         let target_id = parseInt(e.target.id);
-
         let curans = correctAnswers[currentIndex];
-
+        
         if(target_id === curans) {
             setPositiveScore(a => a + 1);
             alert('Correct Answwer');
-            // setCorrectAns('condition-check correct correct-shake');
+            //setCorrectAns(a => console.log(a[0] = 'condition-check correct correct-shake'));
         } else {
             setNegativeScore(a => a + 1);
             alert('Wrong Answwer');
         }
+        
+        // console.log(`Pos : ${positiveScore} && Neg : ${negativeScore}`)
 
         setQuestionIndex(a => a + 1);
         let roundPerQuesLength = 5 - 1;
@@ -151,7 +155,7 @@ function PlayGround(props) {
 
         if(currentIndex < currQuestion.length) {
             let nextQues = currentIndex + 1;
-            setCurrentIndex(nextQues);            
+            setCurrentIndex(nextQues);
         }
 
         if(currentIndex + 2 > currQuestion.length) {
@@ -227,7 +231,7 @@ function PlayGround(props) {
                                         (currAnswerOptions[currentIndex] || []).map((data, index) => {
                                             return (
                                                 <li key={index}>
-                                                    <button id={data.id} className={`answer-option`} title={data.text} onClick={handleClick}>
+                                                    <button id={data.id} dbid={index} className={`answer-option`} title={data.text} onClick={handleClick}>
                                                         {data.text}
                                                         <svg className="svg-icon wrong-icon" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
                                                             <path className="fill" d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#000"/>
