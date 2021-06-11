@@ -80,7 +80,7 @@ function PlayGround(props) {
             let answr = qa_data.questions;
             let ansArr = [];
             let corAns = qa_data.questions;
-            let corAnsArr = []
+            let corAnsArr = [];
 
             for(let a = 0; a < ques.length; a++) {
                 quesArr.push(ques[a].question);
@@ -94,9 +94,6 @@ function PlayGround(props) {
             setCurrQuestion(quesArr);
             setCurrAnswerOptions(ansArr);
             setCorrectAnswers(corAnsArr);
-
-            
-            
 
             // Round Splash Screen API Call();
             let rs_respons = await axios.get(`https://rballaccess.achieveee.com/api/athletes/${athlete_id}`);
@@ -231,7 +228,7 @@ function PlayGround(props) {
                                         (currAnswerOptions[currentIndex] || []).map((data, index) => {
                                             return (
                                                 <li key={index}>
-                                                    <button id={data.id} dbid={index} className={`answer-option`} title={data.text} onClick={handleClick}>
+                                                    <button id={data.id} className={`answer-option`} title={data.text} onClick={handleClick}>
                                                         {data.text}
                                                         <svg className="svg-icon wrong-icon" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
                                                             <path className="fill" d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#000"/>
