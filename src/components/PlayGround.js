@@ -165,7 +165,6 @@ function PlayGround(props) {
             }
             localStorage.setItem('score_data', JSON.stringify(scoreData));
             history.push(`/score-leaderboard/${athlete_id}`);
-            console.log(scoreData);
         }
     }
 
