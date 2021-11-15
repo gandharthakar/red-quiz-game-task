@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useStopwatch } from 'react-timer-hook';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PlayGround(props) {
 
-    const history = useHistory();
+    const history = useNavigate();
     let athlete_id = props.match.params.id;
     
     const showRoundPageView = false;

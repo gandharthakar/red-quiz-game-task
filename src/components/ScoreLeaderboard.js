@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function ScoreLeaderboard(props) {
-    const history = useHistory();
+    const history = useNavigate();
     let athlete_id = props.match.params.id;    
 
     let leaderboardData = {
